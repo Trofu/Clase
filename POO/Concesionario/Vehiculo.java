@@ -1,3 +1,5 @@
+package Concesionario;
+
 public class Vehiculo {
     private String marca;
     private String modelo;
@@ -23,6 +25,7 @@ public class Vehiculo {
         this.cambioAutomatico=cambioAuto;
         if (cambioAutomatico){
             this.numMarchas=0;
+            this.marcha=0;
         }else{
             this.numMarchas=5;
         }
@@ -65,8 +68,26 @@ public class Vehiculo {
     }
 
     public void subirMarcha(){
-        if (marcha<numMarchas){
+        if (marcha<numMarchas&&!cambioAutomatico){
             this.marcha+=1;
         }
+    }
+    public void bajarMarcha(){
+        if (marcha>0&&!cambioAutomatico){
+            this.marcha-=1;
+        }
+    }
+
+
+    @Override
+    public String toString() {
+        String Automatico = cambioAutomatico?"automatico":"manual";
+        return "Concesionario.Vehiculo{" +
+                "marca='" + marca + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", color='" + color + '\'' +
+                ", matricula='" + matricula + '\'' +
+                ", cambioAutomatico=" + Automatico+"}"
+                ;
     }
 }
