@@ -25,7 +25,6 @@ public class Main {
         System.out.println("Punto 6" +p7);
         System.out.println("Distacia entre Punto 3 y Punto 6 = "+p4.distancia(p7));
 
-
     }
 
 }
