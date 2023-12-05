@@ -5,11 +5,6 @@ public class Cuenta {
     private String titular;
     private String numCuenta;
     private static int num;
-    public Cuenta(){
-        this.money=0.0;
-        this.titular="";
-        this.numCuenta="";
-    }
     public Cuenta(String titular){
         this.money=50;
         this.titular=titular;
@@ -36,8 +31,8 @@ public class Cuenta {
     }
     public boolean transferencia(Cuenta Cuenta, double money){
         if (money>0) {
-            this.money-=money;
-            Cuenta.money+=money;
+            reintegro(money);
+            Cuenta.ingreso(money);
             return true;
         }
         return false;
