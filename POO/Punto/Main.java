@@ -22,6 +22,17 @@ public class Main {
         System.out.println("Punto 5" +p6);
         System.out.println("Punto 6" +p7);
         System.out.println("Distacia entre Punto 3 y Punto 6 = "+p4.distancia(p7));
+        System.out.println("-----------");
+        Punto p10 = new Punto(10,10);
+        Punto p20 = new Punto(25,25);
+        Rectangulo r1 = new Rectangulo(p10,p20);
+        System.out.println(r1);
+        System.out.println("-----------");
+        Rectangulo r2 = new Rectangulo(p10,40,15);
+        System.out.println(r2);
+        System.out.println("-----------");
+        r2.moveUp(15);
+        System.out.println(r2);
 
     }
 
