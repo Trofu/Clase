@@ -1,4 +1,4 @@
-package Ejercicios.Ej1;
+package Ejercicios.Ej1y2;
 public class Cuenta {
     private static final String COD_CUENTA="ES33";
     private double money;

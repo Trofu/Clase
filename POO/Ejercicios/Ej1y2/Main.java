@@ -1,4 +1,4 @@
-package Ejercicios.Ej1;
+package Ejercicios.Ej1y2;
 
 public class Main {
 
