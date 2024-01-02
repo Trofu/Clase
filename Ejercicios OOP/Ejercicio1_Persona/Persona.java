@@ -15,17 +15,17 @@ public class Persona {
         this.nombre=nombre;
         this.apellidos=apellidos;
         this.edad=edad;
-        dni=null;
+        dni=generaDNI();
         sexo=Sexo.NoQuieroDecirlo;
         peso=0;
         altura=0;
     }
 
-    Persona(String nombre, String apellidos, int edad, String sexo, double peso, double altura){
+    Persona(String nombre, String apellidos, int edad,String dni, String sexo, double peso, double altura){
         this.nombre=nombre;
         this.apellidos=apellidos;
         this.edad=edad;
-        this.dni=generaDNI();
+        this.dni=dni;
         if (sexo.equals("Hombre")){
             this.sexo=Sexo.Hombre;
         }else if (sexo.equals("Mujer")){
