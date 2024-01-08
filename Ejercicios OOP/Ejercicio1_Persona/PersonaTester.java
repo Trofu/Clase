@@ -38,7 +38,7 @@ public class PersonaTester {
             } else if (num==0) {
                 System.out.println("El IMC esta en el rango normal");
             } else if (num==1) {
-                System.out.println("El IMC esta en el raango sobrepeso");
+                System.out.println("El IMC esta en el rango sobrepeso");
             }else {
                 System.out.println("El IMC esta en el rango obeso");
             }
