@@ -45,8 +45,10 @@ public class Persona {
             return 0;
         }else if (imc>=25&&imc<30){
             return 1;
-        }else {
+        }else if (imc>=30&&imc<40){
             return 2;
+        }else {
+            return 3;
         }
     }
     public boolean esMayorDeEdad(){
@@ -58,7 +60,7 @@ public class Persona {
     private String generaDNI(){
         int dni = (int) (Math.random()*100000000);
         char[] letra ={'T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K'};
-        return dni+""+letra[dni%23];
+        return dni+""+letra[dni%letra.length];
     }
 
     public double getAltura() {
@@ -115,7 +117,7 @@ public class Persona {
 
     @Override
     public String toString() {
-        return  "La persona "+nombre+" "+apellidos+" tiene " + edad +" años de edad, con DNI: "+dni+", "+sexo+" con peso "
-                +peso+"kg y altura: "+ altura+"metros";
+        return  "La persona "+nombre+" "+apellidos+" tiene " + edad +" años de edad, con el DNI: "+dni+", sexo: "+sexo+" con peso "
+                +peso+"kg y "+ altura+"metros de altura.";
     }
 }
