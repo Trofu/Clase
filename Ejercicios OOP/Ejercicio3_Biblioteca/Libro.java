@@ -4,18 +4,18 @@ public class Libro {
 
     private String titulo;
     private String autor;
-    private int numero;
+    private int ejemplares;
     private int prestados;
 
 
     Libro(String titulo, String autor, int numero){
-        this.numero=numero;
+        this.ejemplares=numero;
         this.prestados=0;
         this.autor=autor;
         this.titulo=titulo;
     }
-    public int getNumero() {
-        return numero;
+    public int getEjemplares() {
+        return ejemplares;
     }
     public int getPrestados() {
         return prestados;
@@ -26,22 +26,16 @@ public class Libro {
     public String getTitulo() {
         return titulo;
     }
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
     public void setPrestados(int prestados) {
         this.prestados = prestados;
     }
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setEjemplares(int numero) {
+        this.ejemplares = numero;
     }
     public boolean prestamoLibro(){
-        if (numero>0){
+        if (ejemplares>0){
             prestados++;
-            numero--;
+            ejemplares--;
             return true;
         }else {
             return false;
@@ -50,7 +44,7 @@ public class Libro {
     public boolean devolucionLibro(){
         if (prestados>0){
             prestados--;
-            numero++;
+            ejemplares++;
             return true;
         }else {
             return false;
@@ -58,6 +52,6 @@ public class Libro {
     }
     @Override
     public String toString() {
-        return "\nEl libro " + titulo+ " de " + autor+" tiene "+numero+ " ejemplares y " + prestados + " estan prestados";
+        return "\nEl libro " + titulo+ " de " + autor+" tiene "+ejemplares+ " ejemplares y " + prestados + " estan prestados";
     }
 }

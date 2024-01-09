@@ -2,11 +2,12 @@ package Ejercicio2_Password;
 
 public class Password {
 
-    private int longitud;
+    private static int longitud = 10;
     private String contrasena;
 
-    Password(){
-        this.longitud=10;
+
+    Password(int longitud){
+        this.longitud=longitud;
         this.contrasena=generarPassword();
     }
 
