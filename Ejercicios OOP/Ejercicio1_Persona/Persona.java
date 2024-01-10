@@ -26,9 +26,9 @@ public class Persona {
         this.apellidos=apellidos;
         this.edad=edad;
         this.dni=dni;
-        if (sexo.equals("Hombre")){
+        if (sexo.equalsIgnoreCase("Hombre")){
             this.sexo=Sexo.Hombre;
-        }else if (sexo.equals("Mujer")){
+        }else if (sexo.equalsIgnoreCase("Mujer")){
             this.sexo=Sexo.Mujer;
         }else {
             this.sexo=Sexo.NoQuieroDecirlo;
