@@ -12,9 +12,9 @@ public class Biblioteca {
 
     Biblioteca(){
         String[][] libro = {{"Don Quijote de la Mancha", "Miguel de Cervantes Saavedra"},{"Cien años de soledad","Gabriel García Márquez"}, {"El alquimista", "Paulo Coehlo"}, {"20 poemas de amor y una canción desesperada", "Pablo Neruda"}, {"La ciudad y los perros", "Mario Vargas Llosa"}, {"La casa de los espíritus","Isabel Allende"}, {"Desolación", "Gabriela Mistral"}, {"Rayuela", "Julio Cortázar"}, {"El Aleph", "Jorge Luis Borges"}, {"El amor en los tiempos del cólera","Gabriel García Márquez"}};
-        numero_libro_max=3;
+        numero_libro_max=libro.length;
         for (int i = 0; i < libro.length; i++) {
-            libros[i] = new Libro(libro[i][0], libro[i][1], numero_libro_max);
+            libros[i] = new Libro(libro[i][0], libro[i][1], 3);
         }
     }
 
@@ -50,7 +50,7 @@ public class Biblioteca {
         return localizacion;
     }
 
-    public int recuperar(String titulo){
+    public int recuperarLibro(String titulo){
         for (int i = 0; i < libros.length; i++) {
             if (titulo.equalsIgnoreCase(libros[i].getTitulo())){
                 return i;
@@ -58,6 +58,27 @@ public class Biblioteca {
         }
         return -1;
     }
+
+    public boolean nuevoLibro(String titulo,String autor,int ejemplares){
+        if (libros.length==100){
+            return false;
+        }else {
+            libros[libros.length]=new Libro(titulo,autor,ejemplares);
+            return true;
+        }
+    }
+    public boolean eliminarLibro(String titulo){
+        for (int i = 0; i < libros.length; i++) {
+            if (titulo.equalsIgnoreCase(libros[i].getTitulo())){
+                libros[i]=libros[libros.length];
+                libros[libros.length]=null;
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
     @Override
     public String toString() {
