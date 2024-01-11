@@ -29,26 +29,6 @@ public class Biblioteca {
             libros[i] = new Libro(libro[i][0], libro[i][1], 3);
         }
     }
-
-    Biblioteca(){
-        String[][] libro = {
-                {"Don Quijote de la Mancha", "Miguel de Cervantes Saavedra"},
-                {"Cien años de soledad","Gabriel García Márquez"},
-                {"El alquimista", "Paulo Coehlo"},
-                {"20 poemas de amor y una canción desesperada", "Pablo Neruda"},
-                {"La ciudad y los perros", "Mario Vargas Llosa"},
-                {"La casa de los espíritus","Isabel Allende"},
-                {"Desolación", "Gabriela Mistral"},
-                {"Rayuela", "Julio Cortázar"},
-                {"El Aleph", "Jorge Luis Borges"},
-                {"El amor en los tiempos del cólera","Gabriel García Márquez"}
-        };
-        numero_libro_max=libro.length;
-        for (int i = 0; i < libro.length; i++) {
-            libros[i] = new Libro(libro[i][0], libro[i][1], 3);
-        }
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -82,21 +62,25 @@ public class Biblioteca {
     }
 
     public int recuperarLibro(String titulo){
-        for (int i = 0; i < libros.length; i++) {
-            String tituloLibro = libros[i].getTitulo();
-            tituloLibro= tituloLibro.substring(0,titulo.length());
-            if (tituloLibro.equalsIgnoreCase(titulo)){
+        for (int i = 0; i < this.libros.length; i++) {
+            if (tituloParte(libros[i].getTitulo(),titulo)){
                 return i;
             }
         }
         return -1;
     }
+    private boolean tituloParte(String titulo,String parte){
+        if (parte.isEmpty()||titulo.isEmpty())return false;
+        if (titulo.substring(0,parte.length()-1).equalsIgnoreCase(parte))return true;
+        return tituloParte(titulo.substring(1,titulo.length()-1),parte);
+    }
+
     public boolean nuevoLibro(String titulo,String autor,int ejemplares){
-        if (numero_libro_max==100){
+        if (this.numero_libro_max==100){
             return false;
         }else {
-            libros[numero_libro_max]=new Libro(titulo,autor,ejemplares);
-            numero_libro_max++;
+            this.libros[this.numero_libro_max]=new Libro(titulo,autor,ejemplares);
+            this.numero_libro_max++;
             return true;
         }
     }
@@ -105,9 +89,9 @@ public class Biblioteca {
         if (pos<0){
             return false;
         }else if (pos>=0){
-            libros[pos]=libros[numero_libro_max-1];
-            libros[numero_libro_max-1]=null;
-            numero_libro_max--;
+            this.libros[pos]=this.libros[this.numero_libro_max-1];
+            this.libros[this.numero_libro_max-1]=null;
+            this.numero_libro_max--;
             return true;
         }
         return false;
@@ -117,7 +101,7 @@ public class Biblioteca {
         if (pos<0){
             return false;
         }else {
-            return libros[pos].prestamoLibro();
+            return this.libros[pos].prestamoLibro();
         }
     }
     public boolean devolucion(String titulo){
@@ -125,12 +109,12 @@ public class Biblioteca {
         if (pos<0){
             return false;
         }else {
-            return libros[pos].devolucionLibro();
+            return this.libros[pos].devolucionLibro();
         }
     }
     @Override
     public String toString() {
-        return "La Biblioteca "+nombre+" de la calle "+localizacion+
+        return "La Biblioteca "+nombre+" en "+localizacion+
                 " tiene "+ numero_libro_max+" de libros.\n"+Arrays.toString(libros)+"\n";
 
     }
