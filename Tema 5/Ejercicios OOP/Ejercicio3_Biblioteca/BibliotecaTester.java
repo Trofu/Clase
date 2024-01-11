@@ -6,7 +6,9 @@ public class BibliotecaTester {
         Biblioteca biblio1 = new Biblioteca();
         Biblioteca biblio2 = new Biblioteca();
         System.out.println(biblio1+"\n");
-        biblio1.nuevoLibro("YUJU","JONAS",5);
+        biblio1.prestamo("20");
+        System.out.println(biblio1);
+        biblio1.devolucion("20");
         System.out.println(biblio1);
     }
 
