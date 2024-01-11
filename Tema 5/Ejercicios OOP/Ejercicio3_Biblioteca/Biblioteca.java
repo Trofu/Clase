@@ -62,7 +62,7 @@ public class Biblioteca {
     }
 
     public int recuperarLibro(String titulo){
-        for (int i = 0; i < this.libros.length; i++) {
+        for (int i = 0; i < this.numero_libro_max; i++) {
             if (tituloParte(libros[i].getTitulo(),titulo)){
                 return i;
             }
@@ -70,9 +70,10 @@ public class Biblioteca {
         return -1;
     }
     private boolean tituloParte(String titulo,String parte){
-        if (parte.isEmpty()||titulo.isEmpty())return false;
-        if (titulo.substring(0,parte.length()-1).equalsIgnoreCase(parte))return true;
-        return tituloParte(titulo.substring(1,titulo.length()-1),parte);
+        if (parte.isEmpty()||titulo.isEmpty()||parte.length()>titulo.length())return false;
+        String tituloSub = titulo.substring(0,parte.length());
+        if (tituloSub.equalsIgnoreCase(parte))return true;
+        return tituloParte(titulo.substring(1,titulo.length()),parte);
     }
 
     public boolean nuevoLibro(String titulo,String autor,int ejemplares){

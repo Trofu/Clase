@@ -14,11 +14,8 @@ public class BibliotecaTester {
         biblio1.nuevoLibro("La guerra de los chips","Chris Miller",3);
         System.out.println(biblio1);
         biblio2.eliminarLibro("Quijote");
-        System.out.println(biblio2);
         biblio2.eliminarLibro("El amor");
-        System.out.println(biblio2);
         biblio2.eliminarLibro("espíritus");
-        System.out.println(biblio2);
         biblio2.eliminarLibro("Franco");
         System.out.println(biblio2);
     }
