@@ -11,6 +11,10 @@ public class Password {
         this.contrasena=generarPassword();
     }
 
+    public Password(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
     public boolean esFuerte() {
         int mayusculas = 0;
         int minusculas = 0;

@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Biblioteca {
 
     private int numero_libro_max;
-    private static Libro[] libros=new Libro[100];
+    private Libro[] libros=new Libro[100];
     private String nombre;
     private String localizacion;
 
@@ -115,8 +115,12 @@ public class Biblioteca {
     }
     @Override
     public String toString() {
+        Libro[] librosNew=new Libro[numero_libro_max];
+        for (int i = 0; i < numero_libro_max; i++) {
+            librosNew[i] = libros[i];
+        }
         return "La Biblioteca "+nombre+" en "+localizacion+
-                " tiene "+ numero_libro_max+" de libros.\n"+Arrays.toString(libros)+"\n";
+                " tiene "+ numero_libro_max+" de libros.\nLos libros que tiene: "+ Arrays.toString(librosNew)+"\n";
 
     }
 }
