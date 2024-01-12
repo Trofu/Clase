@@ -31,6 +31,7 @@ public class BibliotecaTester {
         biblio2.devolucion("alquimista");
         biblio2.prestamo("Mancha");
         biblio2.prestamo("perros");
+        biblio2.devolucion("perros");
 
         System.out.println(biblio1);
         System.out.println(biblio2);
