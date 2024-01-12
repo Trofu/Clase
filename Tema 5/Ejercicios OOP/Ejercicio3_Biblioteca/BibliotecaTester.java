@@ -19,7 +19,21 @@ public class BibliotecaTester {
         biblio2.eliminarLibro("Franco");
         System.out.println(biblio2);
         biblio1.prestamo("Tormenta");
-        biblio2.prestamo("");
+        biblio1.prestamo("perros");
+        biblio1.prestamo("Tormenta");
+        biblio1.devolucion("Tormenta");
+        biblio2.prestamo("Tormenta");
+        biblio1.prestamo("soledad");
+        biblio1.prestamo("Tormenta");
+        biblio2.prestamo("perros");
+        biblio2.prestamo("Mancha");
+        biblio2.prestamo("desolación");
+        biblio2.devolucion("alquimista");
+        biblio2.prestamo("Mancha");
+        biblio2.prestamo("perros");
+
+        System.out.println(biblio1);
+        System.out.println(biblio2);
 
     }
 
