@@ -1,14 +1,11 @@
 package Ejercicios_Herencia.Ejercicio5;
 import java.time.LocalDate;
 import static java.time.temporal.ChronoUnit.DAYS;
-
 public abstract class Empleado extends Persona{
-
     private LocalDate fechaInicio;
     private String telefono;
     private double salario;
     private Empleado supervisor;
-
     public Empleado(String nombre, String apellidos, String DNI, String direccion, String telefono, double salario) {
         super(nombre, apellidos, DNI, direccion);
         this.fechaInicio = LocalDate.now();
@@ -16,12 +13,18 @@ public abstract class Empleado extends Persona{
         this.salario = salario;
         this.supervisor=null; //iniciar a null
     }
-
     protected void setSalario(double salario){this.salario=salario;}
-
-    protected abstract boolean cambiarSupervisor(Empleado supervisor);
+    public Empleado getSupervisor() {
+        return supervisor;
+    }
+    public void setSupervisor(Empleado supervisor) {
+        this.supervisor = supervisor;
+    }
+    protected void cambioSalario(int incremento){
+        salario = (salario*(1+(incremento/100)));
+    }
+    public abstract boolean cambiarSupervisor(Empleado supervisor);
     public abstract void incrementarSalario();
-
     private long diasEntreFechas(){
         return DAYS.between(LocalDate.now(),fechaInicio);
     }
