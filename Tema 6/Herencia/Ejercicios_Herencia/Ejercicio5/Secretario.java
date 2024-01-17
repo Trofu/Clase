@@ -12,13 +12,20 @@ public class Secretario extends Empleado{
     }
     @Override
     public void incrementarSalario(){
-        cambioSalario(INCREMENTO);
+        cambiaSalario(INCREMENTO);
     }
+
     @Override
-    public boolean cambiarSupervisor(Empleado supervisor) {
-        if(!(supervisor instanceof Secretario||supervisor instanceof JefeZona))
+    public boolean cambiarSupervisor(Empleado supervisor){
+        if(!(supervisor instanceof Secretario || supervisor instanceof JefeZona))
             return false;
         setSupervisor(supervisor);
         return true;
+    }
+
+    @Override
+    public String toString(){
+        return "Secretario " + super.toString() + "\n despacho: " + despacho +
+                " fax: " + fax;
     }
 }

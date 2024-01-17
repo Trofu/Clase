@@ -35,4 +35,11 @@ public abstract class Persona {
                 " DNI: " + DNI + " dirección: " + direccion;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj==null||!(obj instanceof Persona))
+            return false;
+        Persona persona =(Persona) obj;
+        return persona.getDNI().equals(DNI);
+    }
 }
