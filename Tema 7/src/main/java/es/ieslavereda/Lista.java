@@ -12,8 +12,12 @@ public class Lista {
         size=0;
     }
 
-    public int size(){return size;}
+    public Lista(int[] elemts){
+        this();
+        addAll(elemts);
+    }
 
+    public int size(){return size;}
     public void addHead(int elem){
         Nodo nodo = new Nodo(elem);
         if (size==0){
@@ -24,30 +28,100 @@ public class Lista {
         head=nodo;
         size++;
     }
-
     public void addTail(int elem){
         Nodo nodo = new Nodo(elem);
         if (size==0){
             head=nodo;
         }else {
-            nodo.setSiguiente(tail);
+            tail.setSiguiente(nodo);
         }
         tail=nodo;
         size++;
     }
+    public Integer removeHead(){
+        if (head==null){
+            return null;
+        }
+        int aux = head.getElement();
+        head=head.siguiente;
+        if (head==null)tail=null;
+        size--;
+        return aux;
+    }
+    public Integer removeTail(){
+        if (tail==null || head==null || size==0){
+            return null;
+        }
+        if (size==1||head==tail)removeHead();
+        int aux = tail.getElement();
+        Nodo buc = head;
+        do{
+            buc=buc.getSiguiente();
+        }while (buc.getSiguiente()!=tail);
+        buc.setSiguiente(null);
+        tail=buc;
+        size--;
+        return aux;
+    }
+    public void clear(){
+        head=null;
+        tail=null;
+        size=0;
+    }
+    public boolean contains(int num){
+        Nodo aux = head;
+        for (int i = 0; i < size; i++) {
+            if (aux.getElement()==num){
+                return true;
+            }
+            aux=aux.getSiguiente();
+        }
+        return false;
+    }
+    public Integer get(int num){
+        if(num<0||num>=size)return null;
+        Nodo aux = head;
+        for (int i = 0; i < num ; i++) {
+            aux=aux.getSiguiente();
+        }
+        return aux.getElement();
+    }
 
+    public Integer remove (int num){
+        if(num<0||num>=size)return null;
+        if (num==0)return removeHead();
+        if (num==size-1)return removeTail();
+        Nodo aux = head;
+        for (int i = 0; i < num-1 ; i++) {
+            aux=aux.getSiguiente();
+        }
+        int elm = aux.getSiguiente().getElement();
+        aux.setSiguiente(aux.getSiguiente().getSiguiente());
+        aux=null;
+        size--;
+        return elm;
+    }
+    public void addAll(int[] num){
+        for (int a:num){
+            addTail(a);
+        }
+    }
+    public int[] getAsArray(){
+        int[] a = new int[size];
+        Nodo buc = head;
+        for (int i = 0; i < size; i++) {
+            a[i]=buc.getElement();
+            buc=buc.getSiguiente();
+        }
+        return a;
+    }
     @Override
     public String toString() {
         Nodo nodoAux = head;
-        Nodo nodotail = tail;
-        String cadena = "Lista con elementos: "+ size()+" ";
+        String cadena = "Lista con elementos: "+ size()+" \n";
         while (nodoAux!=null){
-            cadena+=nodoAux+"->";
+            cadena+=nodoAux+" → ";
             nodoAux=nodoAux.getSiguiente();
-        }
-        while (nodotail!=null){
-            cadena+=nodotail+"->";
-            nodotail=nodotail.getSiguiente();
         }
         return cadena;
     }
@@ -72,7 +146,7 @@ public class Lista {
 
         @Override
         public String toString() {
-            return element+"";
+            return "("+element+")";
         }
     }
 
