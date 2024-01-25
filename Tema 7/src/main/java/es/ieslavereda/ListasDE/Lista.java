@@ -1,4 +1,4 @@
-package es.ieslavereda;
+package es.ieslavereda.ListasDE;
 
 public class Lista {
 
@@ -12,54 +12,55 @@ public class Lista {
         size=0;
     }
 
-    public Lista(int[] elemts){
+    public Lista(String[] elemts){
         this();
         addAll(elemts);
     }
 
     public int size(){return size;}
-    public void addHead(int elem){
+    public void addHead(String elem){
         Nodo nodo = new Nodo(elem);
         if (size==0){
             tail=nodo;
         }else {
             nodo.setSiguiente(head);
+            head.setAnterior(nodo);
         }
         head=nodo;
         size++;
     }
-    public void addTail(int elem){
+    public void addTail(String elem){
         Nodo nodo = new Nodo(elem);
         if (size==0){
             head=nodo;
         }else {
+            nodo.setAnterior(tail);
             tail.setSiguiente(nodo);
         }
         tail=nodo;
         size++;
     }
-    public Integer removeHead(){
+    public String removeHead(){
         if (head==null){
             return null;
         }
-        int aux = head.getElement();
+        String aux = head.getElement();
         head=head.siguiente;
-        if (head==null)tail=null;
+        if (head==null)
+            tail=null;
+        else
+            head.setAnterior(null);
         size--;
         return aux;
     }
-    public Integer removeTail(){
+    public String removeTail(){
         if (tail==null || head==null || size==0){
             return null;
         }
         if (size==1||head==tail)removeHead();
-        int aux = tail.getElement();
-        Nodo buc = head;
-        do{
-            buc=buc.getSiguiente();
-        }while (buc.getSiguiente()!=tail);
-        buc.setSiguiente(null);
-        tail=buc;
+        String aux = tail.getElement();
+        tail=tail.anterior;
+        tail.setSiguiente(null);
         size--;
         return aux;
     }
@@ -68,17 +69,17 @@ public class Lista {
         tail=null;
         size=0;
     }
-    public boolean contains(int num){
+    public boolean contains(String num){
         Nodo aux = head;
         for (int i = 0; i < size; i++) {
-            if (aux.getElement()==num){
+            if (aux.getElement().equals(num)){
                 return true;
             }
             aux=aux.getSiguiente();
         }
         return false;
     }
-    public Integer get(int num){
+    public String get(int num){
         if(num<0||num>=size)return null;
         Nodo aux = head;
         for (int i = 0; i < num ; i++) {
@@ -87,7 +88,7 @@ public class Lista {
         return aux.getElement();
     }
 
-    public Integer remove (int num){
+    public String remove (int num){
         if(num<0||num>=size)return null;
         if (num==0)return removeHead();
         if (num==size-1)return removeTail();
@@ -95,19 +96,21 @@ public class Lista {
         for (int i = 0; i < num-1 ; i++) {
             aux=aux.getSiguiente();
         }
-        int elm = aux.getSiguiente().getElement();
+        String elm = aux.getSiguiente().getElement();
+        Nodo aux2=aux.getSiguiente().getSiguiente();
         aux.setSiguiente(aux.getSiguiente().getSiguiente());
+        aux2.setAnterior(aux);
         aux=null;
         size--;
         return elm;
     }
-    public void addAll(int[] num){
-        for (int a:num){
+    public void addAll(String[] num){
+        for (String a:num){
             addTail(a);
         }
     }
-    public int[] getAsArray(){
-        int[] a = new int[size];
+    public String[] getAsArray(){
+        String[] a = new String[size];
         Nodo buc = head;
         for (int i = 0; i < size; i++) {
             a[i]=buc.getElement();
@@ -118,32 +121,45 @@ public class Lista {
     @Override
     public String toString() {
         Nodo nodoAux = head;
-        String cadena = "Lista con elementos: "+ size()+" \n";
+        String cadena = "ListaDE con elementos: "+ size()+" valores\n";
+        cadena+= " Elementos: \t\t";
         while (nodoAux!=null){
             cadena+=nodoAux+" → ";
             nodoAux=nodoAux.getSiguiente();
+        }
+        cadena+="\n Elementos inversa: ";
+        nodoAux=tail;
+        while (nodoAux!=null){
+            cadena+=nodoAux+" ← ";
+            nodoAux=nodoAux.getAnterior();
         }
         return cadena;
     }
 
     private class Nodo{
-        private int element;
+        private String element;
         private Nodo siguiente;
-        public Nodo(int element) {
+        private Nodo anterior;
+        public Nodo(String element) {
             this.element = element;
             siguiente=null;
+            anterior=null;
         }
-        public int getElement() {
+        public String getElement() {
             return element;
         }
         public Nodo getSiguiente() {
             return siguiente;
         }
-
+        public Nodo getAnterior() {
+            return anterior;
+        }
+        public void setAnterior(Nodo anterior) {
+            this.anterior = anterior;
+        }
         public void setSiguiente(Nodo siguiente) {
             this.siguiente = siguiente;
         }
-
         @Override
         public String toString() {
             return "("+element+")";
