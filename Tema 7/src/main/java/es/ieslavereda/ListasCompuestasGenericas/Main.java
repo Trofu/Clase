@@ -1,4 +1,4 @@
-package es.ieslavereda.ListasDE;
+package es.ieslavereda.ListasCompuestasGenericas;
 
 public class Main {
 
