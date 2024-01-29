@@ -1,7 +1,4 @@
-package es.ieslavereda.ListaGenericaSimple;
-
-import java.util.ArrayList;
-import java.util.List;
+package ListaGenericaSimple;
 
 public class Main {
 

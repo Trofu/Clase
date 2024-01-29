@@ -1,4 +1,4 @@
-package es.ieslavereda.ListasCompuestasGenericas;
+package ListaGenericaSimple;
 
 import java.lang.reflect.Array;
 
@@ -26,7 +26,6 @@ public class Lista<E> {
             tail=nodo;
         }else {
             nodo.setSiguiente(head);
-            head.setAnterior(nodo);
         }
         head=nodo;
         size++;
@@ -36,7 +35,6 @@ public class Lista<E> {
         if (size==0){
             head=nodo;
         }else {
-            nodo.setAnterior(tail);
             tail.setSiguiente(nodo);
         }
         tail=nodo;
@@ -48,10 +46,7 @@ public class Lista<E> {
         }
         E aux = head.getElement();
         head=head.siguiente;
-        if (head==null)
-            tail=null;
-        else
-            head.setAnterior(null);
+        if (head==null)tail=null;
         size--;
         return aux;
     }
@@ -61,8 +56,12 @@ public class Lista<E> {
         }
         if (size==1||head==tail)removeHead();
         E aux = tail.getElement();
-        tail=tail.anterior;
-        tail.setSiguiente(null);
+        Nodo<E> buc = head;
+        do{
+            buc=buc.getSiguiente();
+        }while (buc.getSiguiente()!=tail);
+        buc.setSiguiente(null);
+        tail=buc;
         size--;
         return aux;
     }
@@ -99,9 +98,7 @@ public class Lista<E> {
             aux=aux.getSiguiente();
         }
         E elm = aux.getSiguiente().getElement();
-        Nodo<E> aux2=aux.getSiguiente().getSiguiente();
         aux.setSiguiente(aux.getSiguiente().getSiguiente());
-        aux2.setAnterior(aux);
         aux=null;
         size--;
         return elm;
@@ -123,17 +120,10 @@ public class Lista<E> {
     @Override
     public String toString() {
         Nodo<E> nodoAux = head;
-        String cadena = "ListaDE con elementos: "+ size()+" valores\n";
-        cadena+= " Elementos: \t\t";
+        String cadena = "Lista con elementos: "+ size()+" \n";
         while (nodoAux!=null){
             cadena+=nodoAux+" → ";
             nodoAux=nodoAux.getSiguiente();
-        }
-        cadena+="\n Elementos inversa: ";
-        nodoAux=tail;
-        while (nodoAux!=null){
-            cadena+=nodoAux+" ← ";
-            nodoAux=nodoAux.getAnterior();
         }
         return cadena;
     }
@@ -141,11 +131,9 @@ public class Lista<E> {
     private class Nodo<E>{
         private E element;
         private Nodo<E> siguiente;
-        private Nodo<E> anterior;
         public Nodo(E element) {
             this.element = element;
             siguiente=null;
-            anterior=null;
         }
         public E getElement() {
             return element;
@@ -153,15 +141,11 @@ public class Lista<E> {
         public Nodo<E> getSiguiente() {
             return siguiente;
         }
-        public Nodo<E> getAnterior() {
-            return anterior;
-        }
-        public void setAnterior(Nodo<E> anterior) {
-            this.anterior = anterior;
-        }
+
         public void setSiguiente(Nodo<E> siguiente) {
             this.siguiente = siguiente;
         }
+
         @Override
         public String toString() {
             return "("+element+")";

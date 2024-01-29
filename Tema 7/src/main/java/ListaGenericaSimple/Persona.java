@@ -1,4 +1,4 @@
-package es.ieslavereda.ListaGenericaSimple;
+package ListaGenericaSimple;
 public class Persona {
     private String DNI;
     private String nombre;
