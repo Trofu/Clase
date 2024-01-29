@@ -26,7 +26,7 @@ public class PrincipalLista {
         System.out.println(listaEnteros);
         ArrayList<Persona> listaPersonas = new ArrayList<>();
         listaPersonas.add(new Persona("123","A","ABC",18));
-        listaPersonas.add(new Persona("456","B","BCD",10));
+        listaPersonas.add(new Persona("456","Bo","BCD",10));
         listaPersonas.add(new Persona("789","C","CDE",30));
         listaPersonas.add(new Persona("741","D","DEF",50));
         System.out.println();
@@ -34,7 +34,10 @@ public class PrincipalLista {
     }
     public static void imprimir(List<Persona> List){
         for (Persona s:List){
-            System.out.println(" - "+s);
+            if (s.getNombre().contains("o"))
+                List.remove(s);
+            else
+                System.out.println(" - "+s);
         }
         System.out.println();
     }
