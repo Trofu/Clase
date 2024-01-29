@@ -2,7 +2,7 @@ package ListaGenericaSimple;
 
 import java.lang.reflect.Array;
 
-public class Lista<E> {
+public class Lista<E> implements ILista<E> {
 
     private Nodo<E> head;
     private Nodo<E> tail;
@@ -18,8 +18,9 @@ public class Lista<E> {
         this();
         addAll(elemts);
     }
-
+    @Override
     public int size(){return size;}
+    @Override
     public void addHead(E elem){
         Nodo<E> nodo = new Nodo<>(elem);
         if (size==0){
@@ -40,6 +41,7 @@ public class Lista<E> {
         tail=nodo;
         size++;
     }
+    @Override
     public E removeHead(){
         if (head==null){
             return null;
@@ -73,7 +75,7 @@ public class Lista<E> {
     public boolean contains(E num){
         Nodo<E> aux = head;
         for (int i = 0; i < size; i++) {
-            if (aux.getElement()==num){
+            if (aux.getElement().equals(num)){
                 return true;
             }
             aux=aux.getSiguiente();
