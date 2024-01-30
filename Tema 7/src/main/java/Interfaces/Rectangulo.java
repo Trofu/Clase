@@ -1,3 +1,4 @@
+package Interfaces;
 public class Rectangulo implements IFigura,Relatable{
 
     private double base;

@@ -1,4 +1,5 @@
-package ListaGenericaSimple;
+package Model;
+
 public class Persona {
     private String DNI;
     private String nombre;
@@ -29,7 +30,7 @@ public class Persona {
     }
     public void cumplirAnyos(){ this.edad++;}
     public void printDNI(){
-        System.out.println("Desde Persona imprimo el DNI: " + DNI);
+        System.out.println("Desde Model.Persona imprimo el DNI: " + DNI);
     }
 
     @Override
