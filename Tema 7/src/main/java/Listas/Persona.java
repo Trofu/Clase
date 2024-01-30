@@ -1,4 +1,3 @@
-package Listas;
 public class Persona {
     private String DNI;
     private String nombre;
