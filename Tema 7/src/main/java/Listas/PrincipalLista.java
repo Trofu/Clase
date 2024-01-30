@@ -1,6 +1,10 @@
 package Listas;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import Model.Persona;
 
 public class PrincipalLista {
 
@@ -24,20 +28,25 @@ public class PrincipalLista {
         listaEnteros.set(0,8);
         System.out.println(listaEnteros);
         ArrayList<Model.Persona> listaPersonas = new ArrayList<>();
-        listaPersonas.add(new Model.Persona("123","A","ABC",18));
-        listaPersonas.add(new Model.Persona("456","Bo","BCD",10));
-        listaPersonas.add(new Model.Persona("789","C","CDE",30));
-        listaPersonas.add(new Model.Persona("741","D","DEF",50));
+        listaPersonas.add(new Model.Persona("123","A","ABC", LocalDate.of(2005,5,21)));
+        listaPersonas.add(new Model.Persona("456","Bo","BCD",LocalDate.of(2003,5,21)));
+        listaPersonas.add(new Model.Persona("789","C","CDE",LocalDate.of(2001,5,21)));
+        listaPersonas.add(new Model.Persona("741","D","DEF",LocalDate.of(1995,5,21)));
         System.out.println();
-        imprimir(listaPersonas);
-    }
-    public static void imprimir(List<Model.Persona> List){
-        for (Model.Persona s:List){
-            if (s.getNombre().contains("o"))
-                List.remove(s);
-            else
-                System.out.println(" - "+s);
+        Iterator<Persona> iteradorPersona = listaPersonas.iterator();
+        Persona p;
+        while (iteradorPersona.hasNext()) {
+            p = iteradorPersona.next();
+            if (p.getNombre().contains("o")) {
+                iteradorPersona.remove();
+                System.out.println("Hem esborrat a -->" + p);
+            }
         }
-        System.out.println();
+        Collections.sort(listaPersonas);
+        System.out.println(listaPersonas);
+        listaPersonas.sort(Persona.SORT_BY_AGE);
+        System.out.println(listaPersonas);
+
     }
+
 }
