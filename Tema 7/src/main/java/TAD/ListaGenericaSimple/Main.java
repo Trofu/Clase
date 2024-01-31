@@ -1,4 +1,4 @@
-package ListaGenericaSimple;
+package TAD.ListaGenericaSimple;
 
 import Model.Persona;
 

@@ -1,4 +1,4 @@
-package ListasSimples;
+package TAD.ListasSimples;
 
 public class Lista {
 

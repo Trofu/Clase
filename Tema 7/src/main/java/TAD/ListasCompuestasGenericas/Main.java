@@ -1,4 +1,4 @@
-package ListasCompuestasGenericas;
+package TAD.ListasCompuestasGenericas;
 
 public class Main {
 

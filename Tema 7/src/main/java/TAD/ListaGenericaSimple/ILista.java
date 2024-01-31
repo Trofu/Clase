@@ -1,4 +1,4 @@
-package ListaGenericaSimple;
+package TAD.ListaGenericaSimple;
 
 public interface ILista<E> {
 

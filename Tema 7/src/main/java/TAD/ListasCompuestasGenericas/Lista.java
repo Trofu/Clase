@@ -1,4 +1,4 @@
-package ListasCompuestasGenericas;
+package TAD.ListasCompuestasGenericas;
 
 import java.lang.reflect.Array;
 
