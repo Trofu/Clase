@@ -1,7 +1,5 @@
 package Sets.Ejercicio;
 
-import java.util.Objects;
-
 public class Bola implements Comparable<Bola> {
 
     private int numero;
@@ -15,7 +13,7 @@ public class Bola implements Comparable<Bola> {
 
     @Override
     public String toString() {
-        return "El numero de la bola es: "+numero;
+        return ""+numero;
     }
     @Override
     public int hashCode() {
