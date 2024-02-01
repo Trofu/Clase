@@ -1,9 +1,7 @@
 package Map.Ejercicios.EJ1;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
 
@@ -11,14 +9,50 @@ public class Main {
 
 
         Map<Trabajador,Pais> empresa1 = new HashMap<>();
-        empresa1.put(new Trabajador("123456789","Pepe","Floreta", LocalDate.of(1990,1,10)),new Pais("España",1000000));
-        empresa1.put(new Trabajador("987654321","Marta","Castillos", LocalDate.of(1995,1,10)),new Pais("España",1000000));
-        empresa1.put(new Trabajador("147258369","Samuel","Rios", LocalDate.of(1996,1,10)),new Pais("España",1000000));
-        empresa1.put(new Trabajador("963852741","Aray","Brito", LocalDate.of(1992,1,10)),new Pais("España",1000000));
-        empresa1.put(new Trabajador("789456123","Jesus","Tarin", LocalDate.of(2000,1,10)),new Pais("España",1000000));
+        Pais Espanya = new Pais("España",470000000);
+        Pais Inglaterra = new Pais("Inglaterra",470000000);
+        Pais Grecia = new Pais("Grecia",470000000);
+        Pais Noruega = new Pais("Noruega",470000000);
+        Pais Islandia = new Pais("Islandia",470000000);
 
 
+        empresa1.put(new Trabajador("123456789","Pepe","Floreta", LocalDate.of(1990,1,10)),Espanya);
+        empresa1.put(new Trabajador("987654321","Marta","Castillos", LocalDate.of(1995,6,10)),Grecia);
+        empresa1.put(new Trabajador("147258369","Samuel","Rios", LocalDate.of(1996,1,10)),Islandia);
+        empresa1.put(new Trabajador("963852741","Aray","Brito", LocalDate.of(1992,3,10)),Inglaterra);
+        empresa1.put(new Trabajador("789456123","Jesus","Tarin", LocalDate.of(2000,1,10)),Noruega);
+        empresa1.put(new Trabajador("369258147","Alexandre","Tarin", LocalDate.of(2005,8,10)),Noruega);
 
+        System.out.println(empresa1);
+        System.out.println();
+
+        for (Pais pais:empresa1.values()){
+            System.out.println(pais);
+        }
+        System.out.println();
+
+        Set<Pais> paisesSet = new TreeSet<>();
+        paisesSet.addAll(empresa1.values());
+        for (Pais pais:paisesSet)
+            System.out.println(pais);
+        System.out.println();
+
+        Set<Trabajador> tarabajadorSet = new TreeSet<>(empresa1.keySet());
+        for (Trabajador pais:tarabajadorSet)
+            System.out.println(pais);
+        System.out.println();
+
+        List<Trabajador> tarabajadorSet2 = new ArrayList<>(empresa1.keySet());
+        Collections.sort(tarabajadorSet2);
+        for (Trabajador pais:tarabajadorSet2)
+            System.out.println(pais);
+        System.out.println();
+
+        Map<Pais,Set<Trabajador>> paises = new TreeMap<>();
+        Set<Trabajador> trabajadores = new TreeSet<>();
+
+        for (Pais pais: paisesSet){
+        }
 
 
 

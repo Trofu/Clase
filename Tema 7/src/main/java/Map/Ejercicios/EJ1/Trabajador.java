@@ -3,10 +3,22 @@ package Map.Ejercicios.EJ1;
 import Model.Persona;
 
 import java.time.LocalDate;
-import java.util.Objects;
+import java.util.Comparator;
 
 public class Trabajador implements Comparable<Trabajador> {
 
+    public static final Comparator<Trabajador> SORT_BY_AGE= new Comparator<>() {
+        @Override
+        public int compare(Trabajador o1, Trabajador o2) {
+            return o1.getFechaNacimiento().compareTo(o2.getFechaNacimiento());
+        }
+    };
+
+    public static final Comparator<Trabajador> SORT_BY_AGE1 =
+            ( o1, o2) -> o1.getFechaNacimiento().compareTo(o2.getFechaNacimiento());
+
+    public static final Comparator<Trabajador> SORT_BY_AGE2 =
+            Comparator.comparing(Trabajador::getFechaNacimiento);
 
     private String dni;
     private String nombre;
@@ -37,13 +49,13 @@ public class Trabajador implements Comparable<Trabajador> {
 
     @Override
     public String toString() {
-        return "El trabajador "+nombre+" "+apellidos+" con dni: "+dni +" nacio: "+fechaNacimiento;
+        return "\nEl trabajador "+nombre+" "+apellidos+" con dni: "+dni +" nacio: "+fechaNacimiento+" ";
     }
     @Override
     public boolean equals(Object obj){
-        if(obj==null||!(obj instanceof Persona)) return false;
-        Persona persona = (Persona) obj;
-        return this.dni.equals(persona.getDNI()) &&
+        if(obj==null||!(obj instanceof Trabajador)) return false;
+        Trabajador persona = (Trabajador) obj;
+        return this.dni.equals(persona.getDni()) &&
                 this.nombre.equals(persona.getNombre()) &&
                 this.apellidos.equals(persona.getApellidos());
     }
@@ -53,6 +65,11 @@ public class Trabajador implements Comparable<Trabajador> {
             return nombre.compareTo(trabajador.getNombre());
         }
         return apellidos.compareTo(trabajador.getApellidos());
+    }
+
+    @Override
+    public int hashCode(){
+        return dni.hashCode()+nombre.hashCode()+apellidos.hashCode();
     }
 
 }

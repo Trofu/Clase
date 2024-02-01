@@ -2,7 +2,7 @@ package Map.Ejercicios.EJ1;
 
 import java.util.Objects;
 
-public class Pais {
+public class Pais implements Comparable<Pais> {
 
     private String nombre;
     private int poblacion;
@@ -20,8 +20,28 @@ public class Pais {
 
     @Override
     public String toString() {
-        return nombre;
+        return " Pais: "+ nombre;
     }
+
+    @Override
+    public int hashCode(){
+        return nombre.hashCode()+poblacion;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if (obj==null||!(obj instanceof Pais))
+                return false;
+        Pais pais = (Pais) obj;
+        return nombre.equals(pais.getNombre());
+    }
+
+    @Override
+    public int compareTo(Pais pais){
+        return nombre.compareTo(pais.getNombre());
+    }
+
+
 
 }
 
