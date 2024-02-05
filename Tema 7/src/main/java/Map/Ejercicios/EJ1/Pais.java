@@ -1,8 +1,13 @@
 package Map.Ejercicios.EJ1;
 
+import java.util.Comparator;
 import java.util.Objects;
 
-public class Pais implements Comparable<Pais> {
+public class
+Pais implements Comparable<Pais> {
+
+
+    public static Comparator<Pais> SORT_BY_POPULATION = (o1, o2) -> o1.getPoblacion() - o2.getPoblacion();
 
     private String nombre;
     private int poblacion;
