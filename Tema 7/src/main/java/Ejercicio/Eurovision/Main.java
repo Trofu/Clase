@@ -1,12 +1,25 @@
 package Ejercicio.Eurovision;
 
+import java.util.*;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        Pais spain = new Pais("España","Melendi","SHUUUUu");
-        Pais french = new Pais("Francia","Melendi","SHUUUUu");
-        System.out.println(spain.votar(french,9));
+
+        List<Pais> eurovision = new ArrayList<>();
+        eurovision.add(new Pais("España","Melendi","SHUUUUu"));
+        eurovision.add(new Pais("Francia","Melendi","SHUUUUu"));
+        eurovision.add(new Pais("Holanda","Melendi","SHUUUUu"));
+
+        for (Pais pais: eurovision){
+            pais.setParticipantes(eurovision);
+        }
+
+
+        System.out.println(eurovision);
+
+
 
 
     }
