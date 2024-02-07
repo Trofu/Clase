@@ -1,13 +1,12 @@
 package Ejercicio.Eurovision;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class Main {
 
     public static void main(String[] args) {
 
-        Set<Pais> participantes = new HashSet<>();
+        Pais spain = new Pais("España","Melendi","SHUUUUu");
+        Pais french = new Pais("Francia","Melendi","SHUUUUu");
+        System.out.println(spain.votar(french,9));
 
 
     }
