@@ -8,7 +8,7 @@ public class Pais{
     private String cantante;
     private String cancion;
     private int puntos;
-    private Votos votados;
+    private Map<Pais,Integer> votados;
     private List<Pais> participantes;
 
 
@@ -17,17 +17,32 @@ public class Pais{
         this.cantante = nombre_cantante;
         this.cancion = cancion;
         puntos=0;
-        votados=new Votos();
+        votados = new HashMap<>();
     }
 
     public boolean votar(){
-        for (Pais pais:participantes){
-
+        List<Integer> totalPuntos = puntos();
+        for (int i = 0; i < totalPuntos.size(); i++) {
+            Pais paisvotado = participantes.get(i);
+            int puntodado = totalPuntos.get(i);
+            paisvotado.setPuntos(puntodado);
+            anyadirVotos(paisvotado,puntodado);
         }
-
-        return false;
+        return true;
     }
-    public void setParticipantes(List<Pais> participantes) {
+
+    private List<Integer> puntos(){
+        List<Integer> puntuacionTotal = new ArrayList<>();
+        for (int i = 1; i <=8 ; i++) {
+            puntuacionTotal.add(i);
+        }
+        puntuacionTotal.add(10);
+        puntuacionTotal.add(12);
+        Collections.shuffle(puntuacionTotal);
+        return  puntuacionTotal;
+    }
+
+    public void setParticipantes(Collection<Pais> participantes) {
         List<Pais> copiaParticipantes = new ArrayList<>(participantes);
         Iterator<Pais> iterator = copiaParticipantes.iterator();
         while (iterator.hasNext()) {
@@ -36,7 +51,12 @@ public class Pais{
                 iterator.remove();
             }
         }
+        Collections.shuffle(copiaParticipantes);
         this.participantes = copiaParticipantes;
+    }
+
+    public void anyadirVotos(Pais pais,Integer num){
+        votados.put(pais,num);
     }
 
 
@@ -52,14 +72,18 @@ public class Pais{
     public int getPuntos() {
         return puntos;
     }
-
-    public Votos getVotados() {
+    public Map<Pais, Integer> getVotados() {
         return votados;
     }
-
+    public List<Pais> getParticipantes() {
+        return participantes;
+    }
+    private void setPuntos(int puntos) {
+        this.puntos += puntos;
+    }
     @Override
     public String toString() {
-        return "Pais: "+nombre+" con la cancion: "+cancion+" interpretada por: "+cantante;
+        return "\nPais: "+nombre+" con la cancion: "+cancion+" interpretada por: "+cantante;
     }
 
     @Override

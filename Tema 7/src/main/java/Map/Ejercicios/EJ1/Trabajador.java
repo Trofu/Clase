@@ -49,7 +49,7 @@ public class Trabajador implements Comparable<Trabajador> {
 
     @Override
     public String toString() {
-        return "\nEl trabajador "+nombre+" "+apellidos+" con dni: "+dni +" nacio: "+fechaNacimiento+" ";
+        return "El trabajador "+nombre+" "+apellidos+" con dni: "+dni +" nacio: "+fechaNacimiento+" ";
     }
     @Override
     public boolean equals(Object obj){

@@ -1,6 +1,7 @@
 package Map.Ejercicios.EJ1;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.*;
 
 public class Main {
@@ -16,8 +17,8 @@ public class Main {
         Pais Islandia = new Pais("Islandia",470000000);
 
 
-        empresa1.put(new Trabajador("123456789","Pepe","Floreta", LocalDate.of(1990,1,10)),Espanya);
-        empresa1.put(new Trabajador("987654321","Marta","Castillos", LocalDate.of(1995,6,10)),Grecia);
+        empresa1.put(new Trabajador("123456789","Pepe","Floreta", LocalDate.of(1950,1,10)),Espanya);
+        empresa1.put(new Trabajador("987654321","Marta","Castillos", LocalDate.of(1995,6,10)),Espanya);
         empresa1.put(new Trabajador("147258369","Samuel","Rios", LocalDate.of(1996,1,10)),Islandia);
         empresa1.put(new Trabajador("963852741","Aray","Brito", LocalDate.of(1992,3,10)),Inglaterra);
         empresa1.put(new Trabajador("789456123","Jesus","Tarin", LocalDate.of(2000,1,10)),Noruega);
@@ -48,11 +49,37 @@ public class Main {
             System.out.println(pais);
         System.out.println();
 
-        Map<Pais,Set<Trabajador>> paises = new TreeMap<>();
-        Set<Trabajador> trabajadores = new TreeSet<>();
 
+        Map<Pais,List<Trabajador>> paises = new TreeMap<>();
         for (Pais pais: paisesSet){
+            List<Trabajador> aux = new ArrayList<>();
+            for (Trabajador trabajador: empresa1.keySet()){
+                if (empresa1.get(trabajador).equals(pais)){
+                    aux.add(trabajador);
+                }
+            }
+            aux.sort(Trabajador.SORT_BY_AGE2);
+            paises.put(pais,aux);
         }
+        for (Pais pais:paises.keySet()){
+            System.out.println(pais+" trabajador ---> "+paises.get(pais));
+        }
+
+
+        Iterator<Trabajador> trabajadorIterator = empresa1.keySet().iterator();
+        while (trabajadorIterator.hasNext()){
+            Trabajador trabajador = trabajadorIterator.next();
+            if (Period.between(trabajador.getFechaNacimiento(),LocalDate.now()).getYears()>=50){
+                System.out.println(trabajador);
+            }
+
+        }
+
+
+        empresa1.keySet().stream().
+                filter(trabajador -> Period.between(trabajador.getFechaNacimiento(),LocalDate.now()).getYears()>=50).
+                sorted(Trabajador.SORT_BY_AGE2).
+                forEach(System.out::println);
 
 
 
