@@ -1,14 +1,23 @@
 package Ejercicio.Eurovision;
 
+import Model.Persona;
+
 import java.util.*;
 
-public class Pais{
+public class Pais implements Comparable<Pais>{
+    public static final Comparator<Pais> SORT_BY_POINTS= new Comparator<>() {
+        @Override
+        public int compare(Pais o1, Pais o2) {
+            return (o2.getPuntos()-o1.getPuntos());
+        }
+
+    } ;
 
     private String nombre;
     private String cantante;
     private String cancion;
     private int puntos;
-    private Map<Pais,Integer> votados;
+    private Map<String,Integer> votados;
     private List<Pais> participantes;
 
 
@@ -17,8 +26,9 @@ public class Pais{
         this.cantante = nombre_cantante;
         this.cancion = cancion;
         puntos=0;
-        votados = new HashMap<>();
+        votados = new TreeMap<>();
     }
+
 
     public boolean votar(){
         List<Integer> totalPuntos = puntos();
@@ -26,10 +36,11 @@ public class Pais{
             Pais paisvotado = participantes.get(i);
             int puntodado = totalPuntos.get(i);
             paisvotado.setPuntos(puntodado);
-            anyadirVotos(paisvotado,puntodado);
+            votados.put(paisvotado.getNombre(), puntodado);
         }
         return true;
     }
+
 
     private List<Integer> puntos(){
         List<Integer> puntuacionTotal = new ArrayList<>();
@@ -55,11 +66,6 @@ public class Pais{
         this.participantes = copiaParticipantes;
     }
 
-    public void anyadirVotos(Pais pais,Integer num){
-        votados.put(pais,num);
-    }
-
-
     public String getNombre() {
         return nombre;
     }
@@ -72,7 +78,7 @@ public class Pais{
     public int getPuntos() {
         return puntos;
     }
-    public Map<Pais, Integer> getVotados() {
+    public Map<String, Integer> getVotados() {
         return votados;
     }
     public List<Pais> getParticipantes() {
@@ -83,7 +89,7 @@ public class Pais{
     }
     @Override
     public String toString() {
-        return "\nPais: "+nombre+" con la cancion: "+cancion+" interpretada por: "+cantante;
+        return "Pais: "+nombre;
     }
 
     @Override
@@ -98,4 +104,10 @@ public class Pais{
     public int hashCode() {
         return Objects.hash(nombre, cantante, cancion);
     }
+
+    @Override
+    public int compareTo(Pais o) {
+        return nombre.compareTo(o.getNombre());
+    }
+
 }
