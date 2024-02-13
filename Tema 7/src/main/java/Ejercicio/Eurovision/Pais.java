@@ -12,6 +12,13 @@ public class Pais implements Comparable<Pais>{
         }
 
     } ;
+    public static final Comparator<Pais> SORT_BY_SONG= new Comparator<>() {
+        @Override
+        public int compare(Pais o1, Pais o2) {
+            return o1.getCancion().compareTo(o2.getCancion());
+        }
+
+    } ;
 
     private String nombre;
     private String cantante;

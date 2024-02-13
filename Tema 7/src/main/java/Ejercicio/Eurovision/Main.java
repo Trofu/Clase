@@ -14,7 +14,7 @@ public class Main {
         eurovision.add(new Pais("Israel","Noa Kirel","Unicorn"));
         eurovision.add(new Pais("Italia","Marco Mengoni","Due vite"));
         eurovision.add(new Pais("Noruega","Alessandra Mele","Queen of Kings"));
-        eurovision.add(new Pais("Ucrania","Tvorchi","heart os Steel"));
+        eurovision.add(new Pais("Ucrania","Tvorchi","Heart os Steel"));
         eurovision.add(new Pais("Bélgica","Gustaph","Because of You"));
         eurovision.add(new Pais("Estonia","Alika Milova","Bridges"));
         eurovision.add(new Pais("Australia","Voyager","Promise"));
@@ -24,7 +24,7 @@ public class Main {
         eurovision.add(new Pais("Croacia","Let 3","Mama SC!"));
         eurovision.add(new Pais("Armenia","Brunette","Future Lover"));
         eurovision.add(new Pais("Austria","Teya","Who the Hell Is Edgar?"));
-        eurovision.add(new Pais("Francia","La Zarra","Évidemment"));
+        eurovision.add(new Pais("Francia","La Zarra","Evidemment"));
         eurovision.add(new Pais("España","Blanca Paloma","Eaea"));
         eurovision.add(new Pais("Moldavia","Pasha Parfeni","Soarele si luna"));
         eurovision.add(new Pais("Polonia","Blanka Stajkow","Solo"));
@@ -52,15 +52,18 @@ public class Main {
         System.out.println();
 
 //         Listado de los paises ordenados por puntuaciones recibidas.
-
+        System.out.println("Paises ordenados por puntuacion");
         eurovision.stream().sorted(Pais.SORT_BY_POINTS).forEach(pais -> System.out.println(pais+" puntos "+pais.getPuntos()));
+        System.out.println();
 
 //         Nombre del pais ganador junto con la puntacion total obtenida y paises que le han votado junto con los puntos asignados por cada uno de ellos.
-
         eurovision.stream().sorted(Pais.SORT_BY_POINTS);
+        System.out.println();
 
 //         Listado de canciones ordenadas por nombre.
-
+        System.out.println("Canciones ordenadas por nombre");
+        eurovision.stream().sorted(Pais.SORT_BY_SONG).forEach(pais -> System.out.println("Cancion: "+pais.getCancion() +" de "+pais.getNombre()));
+        System.out.println();
 
 //         Listado de las 3 canciones mas votadas junto con su puntuacion.
 
