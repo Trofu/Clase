@@ -36,15 +36,14 @@ public class Main {
         eurovision.add(new Pais("Reino Unido","Mae Muller","I Wrote a Song"));
         eurovision.add(new Pais("Alemania","Lord of the Lost","Blood & Glitter"));
         for (Pais pais: eurovision){
-            pais.setParticipantes(eurovision);
-            pais.votar();
+            pais.votar(eurovision);
         }
 
 
         //Listado de todos los paises participantes
         System.out.println("Participantes: ");
-        eurovision.stream().forEach(pais -> System.out.println(pais));
-        System.out.println();
+        eurovision.stream().forEach(pais -> System.out.print("| "+pais+" "));
+        System.out.println("|\n");
 
 //         Listado de todos los paises por orden alfabetico junto con las votaciones realizadas ordenadas de mayor a menor.
 
@@ -57,7 +56,18 @@ public class Main {
         System.out.println();
 
 //         Nombre del pais ganador junto con la puntacion total obtenida y paises que le han votado junto con los puntos asignados por cada uno de ellos.
-        eurovision.stream().sorted(Pais.SORT_BY_POINTS);
+        System.out.println("Ganador y quienes les han votado y con cuanto");
+        String paisConMasPuntosNombre = eurovision.stream().max(Pais.SORT_BY_POINTS2).get().getNombre();
+        Map<Pais,Integer> votadosAlGanador = new HashMap<>();
+        for (Pais pais:eurovision){
+            for (String paises:pais.getVotados().keySet()){
+                if (paises.equals(paisConMasPuntosNombre)){
+                    votadosAlGanador.put(pais,pais.getVotados().get(paisConMasPuntosNombre));
+                }
+            }
+        }
+        eurovision.stream().sorted(Pais.SORT_BY_POINTS).limit(1).forEach(pais -> System.out.print("Ha ganado "+pais.getNombre() +" con "+pais.getPuntos() +" y le han votado: "));
+        System.out.println(votadosAlGanador);
         System.out.println();
 
 //         Listado de canciones ordenadas por nombre.
@@ -66,9 +76,13 @@ public class Main {
         System.out.println();
 
 //         Listado de las 3 canciones mas votadas junto con su puntuacion.
-
+        System.out.println("Las 3 mejores canciones");
+        eurovision.stream().sorted(Pais.SORT_BY_POINTS).limit(3).forEach(pais -> System.out.println("Cancion: "+pais.getCancion() +" con "+pais.getPuntos()+" puntos"));
+        System.out.println();
 
 //         Listado de cantantes ordenados por nombre.
+        System.out.println("Cantantes");
+        eurovision.stream().sorted(Pais.SORT_BY_SINGER).forEach(pais -> System.out.println("Cantante: "+pais.getCantante()+" del pais: "+ pais.getNombre()));
 
 
     }

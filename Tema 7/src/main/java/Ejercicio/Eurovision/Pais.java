@@ -12,10 +12,24 @@ public class Pais implements Comparable<Pais>{
         }
 
     } ;
+    public static final Comparator<Pais> SORT_BY_POINTS2= new Comparator<>() {
+        @Override
+        public int compare(Pais o1, Pais o2) {
+            return (o1.getPuntos()-o2.getPuntos());
+        }
+
+    } ;
     public static final Comparator<Pais> SORT_BY_SONG= new Comparator<>() {
         @Override
         public int compare(Pais o1, Pais o2) {
             return o1.getCancion().compareTo(o2.getCancion());
+        }
+
+    } ;
+    public static final Comparator<Pais> SORT_BY_SINGER= new Comparator<>() {
+        @Override
+        public int compare(Pais o1, Pais o2) {
+            return o1.getCantante().compareTo(o2.getCantante());
         }
 
     } ;
@@ -25,7 +39,6 @@ public class Pais implements Comparable<Pais>{
     private String cancion;
     private int puntos;
     private Map<String,Integer> votados;
-    private List<Pais> participantes;
 
 
     public Pais(String nombre, String nombre_cantante, String cancion) {
@@ -37,10 +50,15 @@ public class Pais implements Comparable<Pais>{
     }
 
 
-    public boolean votar(){
+    public boolean votar(Collection<Pais> participantes){
         List<Integer> totalPuntos = puntos();
+        List<Pais> copaia = new ArrayList<>(participantes);
+        Collections.shuffle(copaia);
         for (int i = 0; i < totalPuntos.size(); i++) {
-            Pais paisvotado = participantes.get(i);
+            Pais paisvotado = copaia.get(i);
+            if (paisvotado.equals(this)){
+                paisvotado = copaia.get(11);
+            }
             int puntodado = totalPuntos.get(i);
             paisvotado.setPuntos(puntodado);
             votados.put(paisvotado.getNombre(), puntodado);
@@ -60,18 +78,6 @@ public class Pais implements Comparable<Pais>{
         return  puntuacionTotal;
     }
 
-    public void setParticipantes(Collection<Pais> participantes) {
-        List<Pais> copiaParticipantes = new ArrayList<>(participantes);
-        Iterator<Pais> iterator = copiaParticipantes.iterator();
-        while (iterator.hasNext()) {
-            Pais pais = iterator.next();
-            if (pais.getNombre().equals(this.getNombre())) {
-                iterator.remove();
-            }
-        }
-        Collections.shuffle(copiaParticipantes);
-        this.participantes = copiaParticipantes;
-    }
 
     public String getNombre() {
         return nombre;
@@ -88,15 +94,12 @@ public class Pais implements Comparable<Pais>{
     public Map<String, Integer> getVotados() {
         return votados;
     }
-    public List<Pais> getParticipantes() {
-        return participantes;
-    }
     private void setPuntos(int puntos) {
         this.puntos += puntos;
     }
     @Override
     public String toString() {
-        return "Pais: "+nombre;
+        return nombre;
     }
 
     @Override
