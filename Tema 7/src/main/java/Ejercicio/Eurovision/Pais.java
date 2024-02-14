@@ -1,7 +1,5 @@
 package Ejercicio.Eurovision;
 
-import Model.Persona;
-
 import java.util.*;
 
 public class Pais implements Comparable<Pais>{
@@ -38,7 +36,7 @@ public class Pais implements Comparable<Pais>{
     private String cantante;
     private String cancion;
     private int puntos;
-    private Map<String,Integer> votados;
+    private Map<Pais,Integer> votados;
 
 
     public Pais(String nombre, String nombre_cantante, String cancion) {
@@ -46,11 +44,11 @@ public class Pais implements Comparable<Pais>{
         this.cantante = nombre_cantante;
         this.cancion = cancion;
         puntos=0;
-        votados = new TreeMap<>();
+        votados = new LinkedHashMap<>();
     }
 
 
-    public boolean votar(Collection<Pais> participantes){
+    public void votar(Collection<Pais> participantes){
         List<Integer> totalPuntos = puntos();
         List<Pais> copaia = new ArrayList<>(participantes);
         Collections.shuffle(copaia);
@@ -61,9 +59,8 @@ public class Pais implements Comparable<Pais>{
             }
             int puntodado = totalPuntos.get(i);
             paisvotado.setPuntos(puntodado);
-            votados.put(paisvotado.getNombre(), puntodado);
+            votados.put(paisvotado,puntodado);
         }
-        return true;
     }
 
 
@@ -74,7 +71,6 @@ public class Pais implements Comparable<Pais>{
         }
         puntuacionTotal.add(10);
         puntuacionTotal.add(12);
-        Collections.shuffle(puntuacionTotal);
         return  puntuacionTotal;
     }
 
@@ -91,7 +87,7 @@ public class Pais implements Comparable<Pais>{
     public int getPuntos() {
         return puntos;
     }
-    public Map<String, Integer> getVotados() {
+    public Map<Pais,Integer> getVotados() {
         return votados;
     }
     private void setPuntos(int puntos) {
