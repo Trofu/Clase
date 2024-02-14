@@ -47,8 +47,7 @@ public class Main {
 
 //         Listado de todos los paises por orden alfabetico junto con las votaciones realizadas ordenadas de mayor a menor.
 
-        eurovision.stream().sorted().forEach(pais -> System.out.println(pais+" ha votado a "+pais.getVotados()));
-        System.out.println();
+
 
 //         Listado de los paises ordenados por puntuaciones recibidas.
         System.out.println("Paises ordenados por puntuacion");
@@ -57,12 +56,12 @@ public class Main {
 
 //         Nombre del pais ganador junto con la puntacion total obtenida y paises que le han votado junto con los puntos asignados por cada uno de ellos.
         System.out.println("Ganador y quienes les han votado y con cuanto");
-        String paisConMasPuntosNombre = eurovision.stream().max(Pais.SORT_BY_POINTS2).get().getNombre();
+        Pais paisConMasPuntosNombre = eurovision.stream().max(Pais.SORT_BY_POINTS2).get();
         Map<Pais,Integer> votadosAlGanador = new HashMap<>();
-        for (Pais pais:eurovision){
-            for (String paises:pais.getVotados().keySet()){
-                if (paises.equals(paisConMasPuntosNombre)){
-                    votadosAlGanador.put(pais,pais.getVotados().get(paisConMasPuntosNombre));
+        for (Pais pais : eurovision) {
+            for (Pais votados : pais.getVotados().keySet()) {
+                if (paisConMasPuntosNombre.equals(votados)){
+                    votadosAlGanador.put(pais,pais.getVotados().get(votados));
                 }
             }
         }

@@ -1,7 +1,5 @@
 package Ejercicio.Eurovision;
 
-import Model.Persona;
-
 import java.util.*;
 
 public class Pais implements Comparable<Pais>{
@@ -38,7 +36,7 @@ public class Pais implements Comparable<Pais>{
     private String cantante;
     private String cancion;
     private int puntos;
-    private Map<String,Integer> votados;
+    private Map<Pais,Integer> votados;
 
 
     public Pais(String nombre, String nombre_cantante, String cancion) {
@@ -61,7 +59,7 @@ public class Pais implements Comparable<Pais>{
             }
             int puntodado = totalPuntos.get(i);
             paisvotado.setPuntos(puntodado);
-            votados.put(paisvotado.getNombre(), puntodado);
+            votados.put(paisvotado,puntodado);
         }
         return true;
     }
@@ -91,7 +89,7 @@ public class Pais implements Comparable<Pais>{
     public int getPuntos() {
         return puntos;
     }
-    public Map<String, Integer> getVotados() {
+    public Map<Pais,Integer> getVotados() {
         return votados;
     }
     private void setPuntos(int puntos) {
