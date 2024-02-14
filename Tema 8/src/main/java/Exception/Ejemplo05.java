@@ -20,6 +20,12 @@ public class Ejemplo05 {
             System.out.println("Resultado: " + div);
 
 
+            //pedir consultar un elemento del vector
+            //capturar la excepción si está fuera de rango
+            System.out.print("Introduce la posición en el vector: ");
+            int posicion = sc.nextInt();
+            System.out.println("Elemento es: " + vector[posicion]);
+
         }
         catch (ArithmeticException e){
             System.out.println("Error producido: "+e);

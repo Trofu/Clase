@@ -34,7 +34,7 @@ public class EJ3 {
                 sc.nextLine();
                 i--;
             }catch (InputMismatchException e){
-                System.err.println("Pon un numero valido");
+                System.err.println("Pon un numero valido " + e);
                 sc.nextLine();
                 i--;
             }
