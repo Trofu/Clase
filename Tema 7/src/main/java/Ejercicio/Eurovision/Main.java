@@ -1,5 +1,5 @@
 package Ejercicio.Eurovision;
-
+//  Juan Luis Espinosa Cuenca 1ºDAM
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -47,8 +47,13 @@ public class Main {
 
 //         Listado de todos los paises por orden alfabetico junto con las votaciones realizadas ordenadas de mayor a menor.
 
-
-
+        System.out.println("Paises ordenador por orden alfabetico y votaciones de mayor a menor");
+        eurovision.stream().sorted().forEach(pais -> { System.out.println(pais + " ha votado a:");
+                     pais.getVotados().entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).
+                    forEach(entry -> System.out.print(entry.getKey() + "->" + entry.getValue()+" "));
+                    System.out.println("\n------------------------------");
+                });
+        System.out.println();
 //         Listado de los paises ordenados por puntuaciones recibidas.
         System.out.println("Paises ordenados por puntuacion");
         eurovision.stream().sorted(Pais.SORT_BY_POINTS).forEach(pais -> System.out.println(pais+" puntos "+pais.getPuntos()));
