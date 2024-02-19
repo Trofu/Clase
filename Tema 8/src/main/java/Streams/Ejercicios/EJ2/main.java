@@ -5,33 +5,24 @@ import java.io.*;
 public class main {
     public static void main(String[] args) {
 
-        Integer max=0,min=0;
-        int i=0;
-        Integer num;
-        try (FileReader fr = new FileReader("Tema 8/src/main/java/Streams/Ejercicios/Documentos/numeros.txt")){
-            while((num= fr.read())!=-1){
-                if (i==0){
-                    max=num;
-                    min=num;
+        try (BufferedReader br = new BufferedReader(new FileReader("Tema 8/src/main/java/Streams/Ejercicios/Documentos/numeros.txt"))){
+            int max=Integer.MIN_VALUE,min=Integer.MAX_VALUE,num=0;
+            String numCadena="";
+            do {
+                numCadena = br.readLine();
+                if (numCadena!=null){
+                    num=Integer.parseInt(numCadena);
+                    if (num>max)
+                        max=num;
+                    if (num<min)
+                        min=num;
                 }
-                if (num>max){
-                    max=num;
-                }
-                if (num<min){
-                    min=num;
-                }
-                i++;
-                System.out.print(num+"|");
-            }
-        } catch (FileNotFoundException e){
+            }while (numCadena!=null);
+            System.out.println(max +" y "+min);
+        }catch (IOException e) {
             e.printStackTrace();
-
-        } catch (IOException e) {
+        }catch (NumberFormatException e){
             e.printStackTrace();
-        } finally {
-            System.out.println();
-            System.out.println(max+" num max");
-            System.out.println(min+" num min");
         }
 
 
