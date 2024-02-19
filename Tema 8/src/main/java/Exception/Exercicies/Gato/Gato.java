@@ -33,28 +33,25 @@ public class Gato implements Serializable {
     }
 
     public List<Gato> load(String fichero) throws IOException,ClassNotFoundException {
-        List<Gato> gatos = new ArrayList<>();
         try (ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream("Tema 8/src/main/java/Streams/Ejercicios/EJ1/Content/"+fichero+".dat")))){
-            Integer edad;
-            String nombre;
-            while (true) {
-                nombre = (String) ois.readObject();
-                edad = (Integer) ois.readObject();
-                gatos.add(new Gato(nombre,edad));
+            List<Gato> gatos = new ArrayList<>();
+            Gato gato = ((Gato) ois.readObject());
+            while (gato!=null){
+                gatos.add(gato);
+                try {
+                    gato = (Gato) ois.readObject();
+                } catch (EOFException e){
+                    break;
+                }
             }
-        } catch (ExcepcionGatuna e) {
-            e.getStackTrace();
-        }catch (EOFException e){
-
+            return gatos;
         }
-        return gatos;
     }
 
     public void save(List<Gato> lista,String fichero)throws IOException{
         try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("Tema 8/src/main/java/Streams/Ejercicios/EJ1/Content/"+fichero+".dat")))){
             for (Gato gato:lista){
-                oos.writeObject(gato.getNombre());
-                oos.writeObject(gato.getEdad());
+                oos.writeObject(gato);
             }
         }
     }
