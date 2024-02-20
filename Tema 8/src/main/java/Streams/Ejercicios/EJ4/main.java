@@ -17,10 +17,10 @@ public class main {
         int num = sc.nextInt();
         System.out.print("Donde quieres guardarlos? :");
         String fichero = sc.next();
-//        fichero ="usa_personas.txt";
+//        fichero ="usa_personas";
 
         try (BufferedReader br1 = new BufferedReader(new FileReader(ruta1));
-             BufferedWriter bw = new BufferedWriter(new FileWriter(ruta+fichero));
+             BufferedWriter bw = new BufferedWriter(new FileWriter(ruta+fichero+".txt"));
              BufferedReader br2 = new BufferedReader(new FileReader(ruta2))){
 
             List<String> nombre1 = new ArrayList<>();
@@ -28,15 +28,11 @@ public class main {
             List<String> nombreCompleto = new ArrayList<>();
             String nom="",nom2="";
 
-            for (int i = 0; i < num; i++) {
-                nom = br1.readLine();
-                nom2 = br2.readLine();
-                if (nom!=null && nom2!=null){
-                    nombre1.add(nom);
-                    nombre2.add(nom2);
-                }else {
-                    i--;
-                }
+            while ((nom = br1.readLine())!=null){
+                nombre1.add(nom);
+            }
+            while ((nom2 = br2.readLine())!=null){
+                nombre2.add(nom2);
             }
 
             Collections.shuffle(nombre1);
